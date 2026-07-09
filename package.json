@@ -1,13 +1,7 @@
 {
   "name": "portfolio-backend",
   "type": "module",
-  "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js"
-  },
   "dependencies": {
-    "@hono/node-server": "^1.19.14",
     "dotenv": "^17.4.2",
     "hono": "^4.12.18",
     "nodemailer": "^9.0.3",
