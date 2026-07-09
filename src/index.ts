@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import dotenv from "dotenv"
 import { ErrorController } from './controllers/Error.controller.js'
-import { Mail } from './services/Mail.service.js'
+import { Mail } from './services/Mail.service'
 import { cors } from 'hono/cors'
 import { emailValidator } from './validators/email-validator.js'
 import { rateLimiter } from './middlewares/rate-limiter.js'
