@@ -1,5 +1,5 @@
 import type { Context, Next } from 'hono'
-import { getConnInfo } from '@hono/node-server/conninfo'
+import { getConnInfo } from 'hono/vercel'
 
 const ipCache = new Map<string, number>();
 const LIMIT_MS = 15 * 60 * 1000; // 15 minutes
