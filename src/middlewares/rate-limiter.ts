@@ -31,8 +31,8 @@ export const rateLimiter = async (c: Context, next: Next) => {
     if (lastTime && (now - lastTime < LIMIT_MS)) {
         // const remainingMinutes = Math.ceil((LIMIT_MS - (now - lastTime)) / 60000);
         return c.json({
-            error: "Too Many Requests",
-            message: `Veuillez réessayer dans quelques minutes.`
+            message: "Too Many Requests",
+            success: false
         }, 429);
     }
 
