@@ -1,8 +1,8 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import dotenv from "dotenv"
-import { ErrorController } from './controllers/Error.controller.js'
-import { Mail } from './services/Mail.service.js'
+import { ErrorController } from './controllers/error.controller.js'
+import { Mail } from './services/mail.service.js'
 import { cors } from 'hono/cors'
 import { emailValidator } from './validators/email-validator.js'
 import { rateLimiter } from './middlewares/rate-limiter.js'
