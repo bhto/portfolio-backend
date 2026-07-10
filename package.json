@@ -2,6 +2,8 @@
   "name": "portfolio-backend",
   "type": "module",
   "dependencies": {
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.38.0",
     "dotenv": "^17.4.2",
     "hono": "^4.12.18",
     "nodemailer": "^9.0.3",

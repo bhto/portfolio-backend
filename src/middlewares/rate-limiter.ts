@@ -1,41 +1,26 @@
 import type { Context, Next } from 'hono'
-import { getConnInfo } from 'hono/vercel'
+import { Ratelimit } from '@upstash/ratelimit'
+import { Redis } from '@upstash/redis'
 
-const ipCache = new Map<string, number>();
-const LIMIT_MS = 15 * 60 * 1000; // 15 minutes
-
-// Cleanup cache periodically to prevent memory leak
-setInterval(() => {
-    const now = Date.now();
-    for (const [ip, lastTime] of ipCache.entries()) {
-        if (now - lastTime > LIMIT_MS) {
-            ipCache.delete(ip);
-        }
-    }
-}, LIMIT_MS);
+// 1 requête par IP toutes les 15 minutes, état partagé via Upstash Redis
+const ratelimit = new Ratelimit({
+    redis: Redis.fromEnv(),
+    limiter: Ratelimit.fixedWindow(1, '15 m'),
+    analytics: false,
+    prefix: 'portfolio:ratelimit',
+})
 
 export const rateLimiter = async (c: Context, next: Next) => {
-    let ip: string = c.req.header('x-forwarded-for') || c.req.header('x-real-ip') || '';
-    if (!ip) {
-        try {
-            const conn = getConnInfo(c);
-            ip = conn.remote.address || '127.0.0.1';
-        } catch {
-            ip = '127.0.0.1';
-        }
+    const ip =
+        c.req.header('x-forwarded-for')?.split(',')[0].trim() ||
+        c.req.header('x-real-ip') ||
+        '127.0.0.1'
+
+    const { success } = await ratelimit.limit(ip)
+
+    if (!success) {
+        return c.json({ message: "Too Many Requests", success: false }, 429)
     }
 
-    const now = Date.now();
-    const lastTime = ipCache.get(ip);
-
-    if (lastTime && (now - lastTime < LIMIT_MS)) {
-        // const remainingMinutes = Math.ceil((LIMIT_MS - (now - lastTime)) / 60000);
-        return c.json({
-            message: "Too Many Requests",
-            success: false
-        }, 429);
-    }
-
-    ipCache.set(ip, now);
-    await next();
-};
+    await next()
+}
