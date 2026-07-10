@@ -84,6 +84,8 @@ CLIENT_ADDRESS=http://localhost:5173
 GOOGLE_EMAIL=adresse@gmail.com
 GOOGLE_APP_PASSWORD=google_mot_de_passe_application
 NODE_ENV=development | production
+UPSTASH_REDIS_REST_URL=https://xxx.upstash.io
+UPSTASH_REDIS_REST_TOKEN=xxxxxx
 ```
 
 ### Lancer en développement

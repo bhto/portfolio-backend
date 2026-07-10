@@ -2,6 +2,7 @@ import nodemailer from "nodemailer"
 import { HTTPException } from "hono/http-exception";
 import "dotenv/config"
 import { EmailTemplate } from "../emails/email-template.js";
+import { createElement } from "hono/jsx";
 import { renderToString } from "hono/jsx/dom/server";
 
 type SendMail = {
@@ -28,9 +29,7 @@ export class Mail {
                 to: email,
                 replyTo: email,
                 subject: "Réponse automatique de Bérenger Hto",
-                html: renderToString(<EmailTemplate
-                    name={name}
-                />)
+                html: renderToString(createElement(EmailTemplate, { name }))
             })
             return true
         } catch (e) {

@@ -1,4 +1,3 @@
-import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import dotenv from "dotenv"
 import { ErrorController } from './controllers/Error.controller.js'
@@ -43,9 +42,13 @@ app.post("/send-mail", rateLimiter, async (c) => {
 app.notFound(ErrorController.notFound)
 app.onError(ErrorController.onError)
 
+export default app
+
+/*
 serve({
     fetch: app.fetch,
     port: 3000
 }, (info) => {
     console.log(`Server is running on http://localhost:${info.port}`)
 })
+*/
