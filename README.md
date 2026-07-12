@@ -1,6 +1,6 @@
 # Bérenger Hto - Portfolio Backend
 
-API REST minimaliste et sécurisée servant de backend au portfolio interactif. Conçue pour gérer l'envoi de réponse automatique de mails via le formulaire de contact.
+API REST minimaliste et sécurisée servant de backend au portfolio interactif. Conçue pour gérer l'envoi de réponse automatique de mails via le formulaire de contact et de sauvegarde d'interactions utilisateur.
 
 ## Fonctionnalités
 
@@ -13,17 +13,18 @@ API REST minimaliste et sécurisée servant de backend au portfolio interactif. 
 
 ## Technologies utilisées
 
-- **Runtime** : Node.js
-- **Framework** : [Hono](https://hono.dev/) + `@hono/node-server`
+- **Runtime** : Vercel
+- **Framework** : [Hono](https://hono.dev/)
 - **Email** : [Nodemailer](https://nodemailer.com/)
 - **Validation** : [Zod](https://zod.dev/)
 - **Config** : [dotenv](https://github.com/motdotla/dotenv)
 - **Langage** : TypeScript (ESNext, NodeNext modules)
-- **Outil de dev** : `tsx watch` pour le rechargement à chaud
 
 ## Structure du projet
 
 ```
+prisma/
+├── schema.prisma              # Déclaration des models de la base de données
 src/
 ├── index.tsx                  # Point d'entrée : serveur, routes, CORS
 ├── controllers/
@@ -35,7 +36,9 @@ src/
 ├── services/
 │   └── Mail.service.ts        # Logique d'envoi via Nodemailer
 └── validators/
-    └── email-validator.ts     # Schéma Zod pour la validation du formulaire
+│    └── email-validator.ts     # Schéma Zod pour la validation du formulaire
+│   lib/
+│    └── prisma.ts              # ORM pour la base de données SQLite
 ```
 
 ## Routes API
@@ -67,7 +70,10 @@ src/
 
 - Node.js ≥ 18
 - Un gestionnaire de paquets : `pnpm` (recommandé), `npm` ou `yarn`
+- Un compte Vercel
 - Un compte SMTP (ex. Gmail, Brevo, etc.)
+- Un compte Upstash
+- Un compte Turso
 
 ### Installation
 
@@ -81,17 +87,20 @@ Crée un fichier `.env` à la racine du projet :
 
 ```env
 CLIENT_ADDRESS=http://localhost:5173
-GOOGLE_EMAIL=adresse@gmail.com
-GOOGLE_APP_PASSWORD=google_mot_de_passe_application
-NODE_ENV=development | production
+GOOGLE_EMAIL=email@gmail.com
+GOOGLE_APP_PASSWORD=xxxxxx
+NODE_ENV=development
 UPSTASH_REDIS_REST_URL=https://xxx.upstash.io
 UPSTASH_REDIS_REST_TOKEN=xxxxxx
+TURSO_DATABASE_URL=libsql://xxx.turso.io
+TURSO_AUTH_TOKEN=xxxxxx
+LOCAL_DATABASE_URL="file:./dev.db"
 ```
 
 ### Lancer en développement
 
 ```bash
-pnpm run dev
+vercel dev
 ```
 
 Le serveur démarre sur [http://localhost:3000](http://localhost:3000).
@@ -99,8 +108,7 @@ Le serveur démarre sur [http://localhost:3000](http://localhost:3000).
 ### Build de production
 
 ```bash
-pnpm run build
-pnpm run start
+vercel build
 ```
 
 ## Licence
