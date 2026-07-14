@@ -1,6 +1,6 @@
 # Bérenger Hto - Portfolio Backend
 
-API REST minimaliste et sécurisée servant de backend au portfolio interactif. Conçue pour gérer l'envoi de réponse automatique de mails via le formulaire de contact.
+API REST minimaliste et sécurisée servant de backend au portfolio interactif. Conçue pour gérer l'envoi de réponse automatique de mails via le formulaire de contact et de l'interaction client.
 
 ## Fonctionnalités
 
@@ -13,17 +13,19 @@ API REST minimaliste et sécurisée servant de backend au portfolio interactif. 
 
 ## Technologies utilisées
 
-- **Runtime** : Node.js
-- **Framework** : [Hono](https://hono.dev/) + `@hono/node-server`
+- **Runtime** : Vercel
+- **Framework** : [Hono](https://hono.dev/)
 - **Email** : [Nodemailer](https://nodemailer.com/)
 - **Validation** : [Zod](https://zod.dev/)
 - **Config** : [dotenv](https://github.com/motdotla/dotenv)
 - **Langage** : TypeScript (ESNext, NodeNext modules)
-- **Outil de dev** : `tsx watch` pour le rechargement à chaud
 
 ## Structure du projet
 
 ```
+prisma/
+├── schema.prisma              # Définition des modèles de la base de données
+├── migrations/                # Migrations crées par Prisma
 src/
 ├── index.tsx                  # Point d'entrée : serveur, routes, CORS
 ├── controllers/
@@ -34,8 +36,12 @@ src/
 │   └── rate-limiter.ts        # Limitation de débit par IP (1 req / 15 min)
 ├── services/
 │   └── Mail.service.ts        # Logique d'envoi via Nodemailer
+├── lib/
+│   └── prisma.ts              # Singleton prisma pour effectuer une connexion vers la base de données 
 └── validators/
     └── email-validator.ts     # Schéma Zod pour la validation du formulaire
+    types.ts                   # Types de typescript
+prisma.config.ts               # Configuration de prisma
 ```
 
 ## Routes API
@@ -83,25 +89,21 @@ Crée un fichier `.env` à la racine du projet :
 CLIENT_ADDRESS=http://localhost:5173
 GOOGLE_EMAIL=adresse@gmail.com
 GOOGLE_APP_PASSWORD=google_mot_de_passe_application
-NODE_ENV=development | production
+NODE_ENV=development
 UPSTASH_REDIS_REST_URL=https://xxx.upstash.io
 UPSTASH_REDIS_REST_TOKEN=xxxxxx
+TURSO_DATABASE_URL=libsql://xxx.xxx.turso.io
+TURSO_AUTH_TOKEN=xxxxxxxx
+LOCAL_DATABASE_URL=file:./dev.db
 ```
 
 ### Lancer en développement
 
 ```bash
-pnpm run dev
+vercel dev
 ```
 
 Le serveur démarre sur [http://localhost:3000](http://localhost:3000).
-
-### Build de production
-
-```bash
-pnpm run build
-pnpm run start
-```
 
 ## Licence
 

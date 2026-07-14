@@ -1,14 +1,12 @@
 import { Hono } from 'hono'
-import dotenv from "dotenv"
 import { ErrorController } from './controllers/Error.controller.js'
 import { Mail } from './services/Mail.service.js'
 import { cors } from 'hono/cors'
 import { emailValidator } from './validators/email-validator.js'
 import { rateLimiter } from './middlewares/rate-limiter.js'
+import type { ContextWithPrisma } from './types.js'
 
-dotenv.config()
-
-const app = new Hono()
+const app = new Hono<ContextWithPrisma>()
 
 app.use(
     '*',
@@ -48,12 +46,3 @@ app.notFound(ErrorController.notFound)
 app.onError(ErrorController.onError)
 
 export default app
-
-/*
-serve({
-    fetch: app.fetch,
-    port: 3000
-}, (info) => {
-    console.log(`Server is running on http://localhost:${info.port}`)
-})
-*/

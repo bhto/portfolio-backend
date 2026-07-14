@@ -1,0 +1,14 @@
+generator client {
+    provider = "prisma-client"
+    output   = "../src/generated/prisma"
+}
+
+datasource db {
+    provider = "sqlite"
+}
+
+model Vistor {
+    id          String      @id @default(cuid())
+    clientId    String 
+    createdAt   DateTime    @default(now()) 
+}
