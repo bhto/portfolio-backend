@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE "Vistor" (
+CREATE TABLE "Visitor" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "clientId" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP

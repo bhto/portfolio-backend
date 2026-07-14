@@ -384,7 +384,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  Vistor: 'Vistor'
+  Visitor: 'Visitor'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -400,81 +400,81 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "vistor"
+    modelProps: "visitor"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
-    Vistor: {
-      payload: Prisma.$VistorPayload<ExtArgs>
-      fields: Prisma.VistorFieldRefs
+    Visitor: {
+      payload: Prisma.$VisitorPayload<ExtArgs>
+      fields: Prisma.VisitorFieldRefs
       operations: {
         findUnique: {
-          args: Prisma.VistorFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$VistorPayload> | null
+          args: Prisma.VisitorFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload> | null
         }
         findUniqueOrThrow: {
-          args: Prisma.VistorFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$VistorPayload>
+          args: Prisma.VisitorFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>
         }
         findFirst: {
-          args: Prisma.VistorFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$VistorPayload> | null
+          args: Prisma.VisitorFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload> | null
         }
         findFirstOrThrow: {
-          args: Prisma.VistorFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$VistorPayload>
+          args: Prisma.VisitorFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>
         }
         findMany: {
-          args: Prisma.VistorFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$VistorPayload>[]
+          args: Prisma.VisitorFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>[]
         }
         create: {
-          args: Prisma.VistorCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$VistorPayload>
+          args: Prisma.VisitorCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>
         }
         createMany: {
-          args: Prisma.VistorCreateManyArgs<ExtArgs>
+          args: Prisma.VisitorCreateManyArgs<ExtArgs>
           result: BatchPayload
         }
         createManyAndReturn: {
-          args: Prisma.VistorCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$VistorPayload>[]
+          args: Prisma.VisitorCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>[]
         }
         delete: {
-          args: Prisma.VistorDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$VistorPayload>
+          args: Prisma.VisitorDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>
         }
         update: {
-          args: Prisma.VistorUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$VistorPayload>
+          args: Prisma.VisitorUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>
         }
         deleteMany: {
-          args: Prisma.VistorDeleteManyArgs<ExtArgs>
+          args: Prisma.VisitorDeleteManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateMany: {
-          args: Prisma.VistorUpdateManyArgs<ExtArgs>
+          args: Prisma.VisitorUpdateManyArgs<ExtArgs>
           result: BatchPayload
         }
         updateManyAndReturn: {
-          args: Prisma.VistorUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$VistorPayload>[]
+          args: Prisma.VisitorUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>[]
         }
         upsert: {
-          args: Prisma.VistorUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$VistorPayload>
+          args: Prisma.VisitorUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VisitorPayload>
         }
         aggregate: {
-          args: Prisma.VistorAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateVistor>
+          args: Prisma.VisitorAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateVisitor>
         }
         groupBy: {
-          args: Prisma.VistorGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.VistorGroupByOutputType>[]
+          args: Prisma.VisitorGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VisitorGroupByOutputType>[]
         }
         count: {
-          args: Prisma.VistorCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.VistorCountAggregateOutputType> | number
+          args: Prisma.VisitorCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VisitorCountAggregateOutputType> | number
         }
       }
     }
@@ -514,13 +514,13 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const VistorScalarFieldEnum = {
+export const VisitorScalarFieldEnum = {
   id: 'id',
   clientId: 'clientId',
   createdAt: 'createdAt'
 } as const
 
-export type VistorScalarFieldEnum = (typeof VistorScalarFieldEnum)[keyof typeof VistorScalarFieldEnum]
+export type VisitorScalarFieldEnum = (typeof VisitorScalarFieldEnum)[keyof typeof VisitorScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -667,7 +667,7 @@ export type PrismaClientOptions = ({
   queryPlanCacheMaxSize?: number
 }
 export type GlobalOmitConfig = {
-  vistor?: Prisma.VistorOmit
+  visitor?: Prisma.VisitorOmit
 }
 
 /* Types for Logging */

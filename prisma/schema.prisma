@@ -7,7 +7,7 @@ datasource db {
     provider = "sqlite"
 }
 
-model Vistor {
+model Visitor {
     id          String      @id @default(cuid())
     clientId    String 
     createdAt   DateTime    @default(now()) 

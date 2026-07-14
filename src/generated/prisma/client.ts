@@ -31,8 +31,8 @@ export * from "./enums.js"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Vistors
- * const vistors = await prisma.vistor.findMany()
+ * // Fetch zero or more Visitors
+ * const visitors = await prisma.visitor.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -42,7 +42,7 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model Vistor
+ * Model Visitor
  * 
  */
-export type Vistor = Prisma.VistorModel
+export type Visitor = Prisma.VisitorModel

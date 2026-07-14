@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.8.0",
   "engineVersion": "3c6e192761c0362d496ed980de936e2f3cebcd3a",
   "activeProvider": "sqlite",
-  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n}\n\nmodel Vistor {\n  id        String   @id @default(cuid())\n  clientId  String\n  createdAt DateTime @default(now())\n}\n",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n}\n\nmodel Visitor {\n  id        String   @id @default(cuid())\n  clientId  String\n  createdAt DateTime @default(now())\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -32,9 +32,9 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Vistor\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"clientId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Visitor\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"clientId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 config.parameterizationSchema = {
-  strings: JSON.parse("[\"where\",\"Vistor.findUnique\",\"Vistor.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"Vistor.findFirst\",\"Vistor.findFirstOrThrow\",\"Vistor.findMany\",\"data\",\"Vistor.createOne\",\"Vistor.createMany\",\"Vistor.createManyAndReturn\",\"Vistor.updateOne\",\"Vistor.updateMany\",\"Vistor.updateManyAndReturn\",\"create\",\"update\",\"Vistor.upsertOne\",\"Vistor.deleteOne\",\"Vistor.deleteMany\",\"having\",\"_count\",\"_min\",\"_max\",\"Vistor.groupBy\",\"Vistor.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"clientId\",\"createdAt\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"contains\",\"startsWith\",\"endsWith\",\"set\"]"),
+  strings: JSON.parse("[\"where\",\"Visitor.findUnique\",\"Visitor.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"Visitor.findFirst\",\"Visitor.findFirstOrThrow\",\"Visitor.findMany\",\"data\",\"Visitor.createOne\",\"Visitor.createMany\",\"Visitor.createManyAndReturn\",\"Visitor.updateOne\",\"Visitor.updateMany\",\"Visitor.updateManyAndReturn\",\"create\",\"update\",\"Visitor.upsertOne\",\"Visitor.deleteOne\",\"Visitor.deleteMany\",\"having\",\"_count\",\"_min\",\"_max\",\"Visitor.groupBy\",\"Visitor.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"clientId\",\"createdAt\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"contains\",\"startsWith\",\"endsWith\",\"set\"]"),
   graph: "KQkQBhoAACIAMBsAAAQAEBwAACIAMB0BAAAAAR4BACMAIR9AACQAIQEAAAABACABAAAAAQAgBhoAACIAMBsAAAQAEBwAACIAMB0BACMAIR4BACMAIR9AACQAIQADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACADHQEAAAABHgEAAAABH0AAAAABAQgAAAkAIAMdAQAAAAEeAQAAAAEfQAAAAAEBCAAACwAwAQgAAAsAMAMdAQAoACEeAQAoACEfQAApACECAAAAAQAgCAAADgAgAx0BACgAIR4BACgAIR9AACkAIQIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgAxUAACUAIBYAACcAIBcAACYAIAYaAAAaADAbAAAXABAcAAAaADAdAQAbACEeAQAbACEfQAAcACEDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIAYaAAAaADAbAAAXABAcAAAaADAdAQAbACEeAQAbACEfQAAcACEOFQAAHgAgFgAAIQAgFwAAIQAgIAEAAAABIQEAAAAEIgEAAAAEIwEAAAABJAEAAAABJQEAAAABJgEAAAABJwEAIAAhKAEAAAABKQEAAAABKgEAAAABCxUAAB4AIBYAAB8AIBcAAB8AICBAAAAAASFAAAAABCJAAAAABCNAAAAAASRAAAAAASVAAAAAASZAAAAAASdAAB0AIQsVAAAeACAWAAAfACAXAAAfACAgQAAAAAEhQAAAAAQiQAAAAAQjQAAAAAEkQAAAAAElQAAAAAEmQAAAAAEnQAAdACEIIAIAAAABIQIAAAAEIgIAAAAEIwIAAAABJAIAAAABJQIAAAABJgIAAAABJwIAHgAhCCBAAAAAASFAAAAABCJAAAAABCNAAAAAASRAAAAAASVAAAAAASZAAAAAASdAAB8AIQ4VAAAeACAWAAAhACAXAAAhACAgAQAAAAEhAQAAAAQiAQAAAAQjAQAAAAEkAQAAAAElAQAAAAEmAQAAAAEnAQAgACEoAQAAAAEpAQAAAAEqAQAAAAELIAEAAAABIQEAAAAEIgEAAAAEIwEAAAABJAEAAAABJQEAAAABJgEAAAABJwEAIQAhKAEAAAABKQEAAAABKgEAAAABBhoAACIAMBsAAAQAEBwAACIAMB0BACMAIR4BACMAIR9AACQAIQsgAQAAAAEhAQAAAAQiAQAAAAQjAQAAAAEkAQAAAAElAQAAAAEmAQAAAAEnAQAhACEoAQAAAAEpAQAAAAEqAQAAAAEIIEAAAAABIUAAAAAEIkAAAAAEI0AAAAABJEAAAAABJUAAAAABJkAAAAABJ0AAHwAhAAAAASsBAAAAAQErQAAAAAEAAAAAAxUABhYABxcACAAAAAMVAAYWAAcXAAgBAgECAwEFBgEGBwEHCAEJCgEKDAILDQMMDwENEQIOEgQREwESFAETFQIYGAUZGQk"
 }
 
@@ -70,8 +70,8 @@ export interface PrismaClientConstructor {
    * const prisma = new PrismaClient({
    *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
    * })
-   * // Fetch zero or more Vistors
-   * const vistors = await prisma.vistor.findMany()
+   * // Fetch zero or more Visitors
+   * const visitors = await prisma.visitor.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -94,8 +94,8 @@ export interface PrismaClientConstructor {
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Vistors
- * const vistors = await prisma.vistor.findMany()
+ * // Fetch zero or more Visitors
+ * const visitors = await prisma.visitor.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -189,14 +189,14 @@ export interface PrismaClient<
   }>>
 
       /**
-   * `prisma.vistor`: Exposes CRUD operations for the **Vistor** model.
+   * `prisma.visitor`: Exposes CRUD operations for the **Visitor** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Vistors
-    * const vistors = await prisma.vistor.findMany()
+    * // Fetch zero or more Visitors
+    * const visitors = await prisma.visitor.findMany()
     * ```
     */
-  get vistor(): Prisma.VistorDelegate<ExtArgs, { omit: OmitOpts }>;
+  get visitor(): Prisma.VisitorDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {
