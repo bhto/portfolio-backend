@@ -29,3 +29,7 @@ lerna-debug.log*
 
 # build
 dist/
+
+# vercel
+.vercel/
+.env*
