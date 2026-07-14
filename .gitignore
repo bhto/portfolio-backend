@@ -31,3 +31,6 @@ lerna-debug.log*
 dist/
 .vercel
 .env*
+
+# test
+test/
