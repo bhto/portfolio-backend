@@ -1,6 +1,7 @@
 import type { Context, Next } from 'hono'
 import { Ratelimit } from '@upstash/ratelimit'
 import { Redis } from '@upstash/redis'
+import { getClientIp } from '../lib/client-info.js'
 
 // 1 requête par IP toutes les 15 minutes, état partagé via Upstash Redis
 const ratelimit = new Ratelimit({
@@ -12,10 +13,7 @@ const ratelimit = new Ratelimit({
 })
 
 export const rateLimiter = async (c: Context, next: Next) => {
-    const ip =
-        c.req.header('x-forwarded-for')?.split(',')[0].trim() ||
-        c.req.header('x-real-ip') ||
-        '127.0.0.1'
+    const ip = getClientIp(c) ?? '127.0.0.1'
 
     const { success } = await ratelimit.limit(ip)
 

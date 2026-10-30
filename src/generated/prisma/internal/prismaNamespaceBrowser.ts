@@ -70,6 +70,13 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const VisitorScalarFieldEnum = {
   id: 'id',
   clientId: 'clientId',
+  country: 'country',
+  city: 'city',
+  browser: 'browser',
+  browserVersion: 'browserVersion',
+  os: 'os',
+  osVersion: 'osVersion',
+  device: 'device',
   createdAt: 'createdAt'
 } as const
 
@@ -82,4 +89,12 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

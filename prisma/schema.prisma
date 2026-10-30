@@ -8,7 +8,14 @@ datasource db {
 }
 
 model Visitor {
-    id          String      @id @default(cuid())
-    clientId    String 
-    createdAt   DateTime    @default(now()) 
+    id             String   @id @default(cuid())
+    clientId       String
+    country        String?
+    city           String?
+    browser        String?
+    browserVersion String?
+    os             String?
+    osVersion      String?
+    device         String?
+    createdAt      DateTime @default(now())
 }

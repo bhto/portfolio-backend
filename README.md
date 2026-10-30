@@ -8,6 +8,7 @@ API REST minimaliste et sécurisée servant de backend au portfolio interactif. 
 - **Validation des données** : Validation stricte du body de la requête avec [Zod](https://zod.dev/) avant tout traitement.
 - **Rate Limiting (contact)** : Protection contre les abus sur `/send-mail` — un seul envoi autorisé par adresse IP toutes les 15 minutes.
 - **Rate Limiting (visite)** : Protection sur `/visit/:id` — une seule requête autorisée par adresse IP par minute (adapté à un landing page, pas de rechargement fréquent).
+- **Contexte de visite** : Chaque visite enregistre le pays/ville (déduits de l'IP par les headers Vercel/Cloudflare) et le navigateur, l'OS et le type d'appareil (User-Agent parsé avec Bowser). L'IP elle-même n'est jamais persistée.
 - **CORS configuré** : Seule l'URL du client définie dans les variables d'environnement est autorisée à effectuer des requêtes.
 - **Gestion d'erreurs centralisée** : Contrôleur dédié pour les routes introuvables (`404`) et les erreurs serveur (`500`).
 - **Template d'email JSX** : Le corps de l'email est rendu côté serveur via le moteur JSX de Hono (`renderToString`).
@@ -39,6 +40,7 @@ src/
 ├── services/
 │   └── Mail.service.ts        # Logique d'envoi via Nodemailer
 ├── lib/
+│   ├── client-info.ts         # IP (non stockée), pays/ville et navigateur/OS du visiteur
 │   └── prisma.ts              # Singleton prisma pour effectuer une connexion vers la base de données 
 └── validators/
     ├── email-validator.ts     # Schéma Zod pour la validation du formulaire
@@ -77,7 +79,20 @@ prisma.config.ts               # Configuration de prisma
 - `:id` — Identifiant unique du visiteur au format `visitor-<uuid>` (ex. `visitor-abc123`)
 
 **Comportement :**
-Si l'identifiant est valide (préfixe `visitor-`), la visite est enregistrée en base de données via Prisma.
+Si l'identifiant est valide (préfixe `visitor-`), la visite est enregistrée en base de données via Prisma avec :
+
+| Champ            | Source                                                              |
+|------------------|---------------------------------------------------------------------|
+| `clientId`       | L'identifiant envoyé par le front                                   |
+| `country`        | `x-vercel-ip-country` / `cf-ipcountry` (ISO 3166-1 alpha-2)          |
+| `city`           | `x-vercel-ip-city` (décodé), si fourni par l'hébergeur               |
+| `browser`        | User-Agent parsé (ex. `Chrome`)                                     |
+| `browserVersion` | User-Agent parsé (ex. `141.0.0.0`)                                  |
+| `os`             | User-Agent parsé (ex. `Linux`, `iOS`, `Windows`)                    |
+| `osVersion`      | User-Agent parsé                                                     |
+| `device`         | User-Agent parsé (`desktop`, `mobile`, `tablet`, …)                 |
+
+L'adresse IP n'est **jamais stockée** : elle sert uniquement au rate limiting et à la géolocalisation fournie par l'hébergeur. En local, les headers géo sont absents, donc `country` et `city` valent `null`.
 
 **Réponses :**
 - `200` — Visite enregistrée (ou ignorée si id invalide)
