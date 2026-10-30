@@ -8,6 +8,7 @@ import { visitRateLimiter } from './middlewares/visit-rate-limiter.js'
 import type { ContextWithPrisma } from './types.js'
 import withPrisma from './lib/prisma.js'
 import { visitorValidator } from './validators/visit-validator.js'
+import { getAgent, getGeo } from './lib/client-info.js'
 
 const app = new Hono<ContextWithPrisma>()
 
@@ -34,16 +35,19 @@ app.get('/', (c) => {
 
 app.get("/visit/:id", visitRateLimiter, withPrisma, async (c) => {
     const id = c.req.param("id")
-    const prisma = c.get("prisma")
 
     if (id && id.startsWith("visitor-")) {
-        const [_, providerId] = id.split("-")
+        const providerId = id.slice("visitor-".length)
         const clientId = visitorValidator.safeParse(providerId).data
 
         if (clientId) {
+            const prisma = c.get("prisma")
+
             await prisma.visitor.create({
                 data: {
-                    clientId
+                    clientId,
+                    ...getGeo(c),
+                    ...getAgent(c)
                 }
             })
         }
