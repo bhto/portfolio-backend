@@ -23,7 +23,7 @@ app.use('*', async (c, next) => {
     c.header('Access-Control-Allow-Credentials', 'true')
 
     if (c.req.method === 'OPTIONS') {
-        return c.text('', 204)
+        return new Response('', { status: 204 })
     }
 
     await next()
