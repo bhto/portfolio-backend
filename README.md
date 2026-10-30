@@ -87,19 +87,19 @@ Si l'identifiant est valide (préfixe `visitor-`), la visite est enregistrée en
 
 ### Prérequis
 
-- Node.js ≥ 18
-- Un gestionnaire de paquets : `pnpm` (recommandé), `npm` ou `yarn`
+- Node.js ≥ 24
+- Un gestionnaire de paquets : `npm` (recommandé), `pnpm` ou `yarn`
 - Un compte SMTP (ex. Gmail, Brevo, etc.)
 
 ### Installation
 
 ```bash
-pnpm install
+npm install
 ```
 
 ### Variables d'environnement
 
-Crée un fichier `.env` à la racine du projet :
+Crée un fichier `.env` ou `.env.local` à la racine du projet :
 
 ```env
 CLIENT_ADDRESS=http://localhost:5173
