@@ -2,6 +2,7 @@
   "name": "portfolio-backend",
   "type": "module",
   "dependencies": {
+    "@hono/vercel": "^1.0.1",
     "@prisma/adapter-libsql": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@upstash/ratelimit": "^2.0.8",

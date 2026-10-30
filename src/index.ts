@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { handle } from '@hono/vercel'
 import { ErrorController } from './controllers/Error.controller.js'
 import { Mail } from './services/Mail.service.js'
 import { cors } from 'hono/cors'
@@ -71,4 +72,4 @@ app.post("/send-mail", rateLimiter, async (c) => {
 app.notFound(ErrorController.notFound)
 app.onError(ErrorController.onError)
 
-export default app
+export default handle(app)
