@@ -1,6 +1,5 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
-// import { handle } from '@hono/vercel'
 import { ErrorController } from './controllers/Error.controller.js'
 import { Mail } from './services/Mail.service.js'
 import { emailValidator } from './validators/email-validator.js'
